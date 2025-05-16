@@ -1,58 +1,53 @@
 
-# Project: Data Modeling with Cassandra
+# Project 1: Data Modeling with Cassandra
 
-## Project Overview
-A startup called Sparkify wants to analyze the data they've been collecting on songs and user activity on their new music streaming app. The analysis team is particularly interested in understanding what songs users are listening to. Currently, there is no easy way to query the data, since the data reside in a directory of CSV files.  
 
-They'd like a data engineer to create an Apache Cassandra database to query song play data and answer specific questions. Your role is to create this database. You'll be able to test it by running queries provided by the analytics team.
+## Business problem
+A startup called Sparkify wants to analyze the data they've been collecting on songs and user activity on their new music streaming app.  
+The analysis team is particularly interested in understanding what songs users are listening to.  
+Currently, there is no easy way to query the data to generate the results.  
+The data reside in a directory of CSV files on user activity on the app.
 
-## Project Details
 
-### Datasets
-You will work with one dataset: `event_data`. It contains CSV files partitioned by date, such as:
-- `event_data/2018-11-08-events.csv`
-- `event_data/2018-11-09-events.csv`
+## Requested solution
+Sparkify needs an Apache Cassandra database which can create queries on song play data to answer the questions.  
 
-### Project Template
-You are provided with a Jupyter Notebook template that:
-- Processes the `event_datafile_new.csv` to create a denormalized dataset
-- Helps model the data tables based on required queries
-- Loads the data into Apache Cassandra tables and runs queries
 
-## Project Steps
+## Starter code provided
+Sparkify provide a part of the ETL pipeline that transfers data from a set of CSV files within a directory to create a streamlined CSV file to model and insert data into Apache Cassandra tables.  
+They have a project template that takes care of all the imports and provides a structure for the ETL pipeline needed to process this data.
 
-### Modeling your NoSQL database
-- Design tables for the queries
-- Write `CREATE KEYSPACE` and `SET KEYSPACE`
-- Use `CREATE TABLE IF NOT EXISTS` and `DROP TABLE IF EXISTS`
-- Use appropriate `PRIMARY KEY` with partition and clustering columns
-- Run `SELECT` queries to test
 
-### Build ETL Pipeline
-- In Part I, process each CSV file and output a new CSV: `event_datafile_new.csv`
-- In Part II, use `CREATE` and `INSERT` statements to load data into Cassandra
-- Run `SELECT` queries to verify
+## Datasets
+- Used the `event_data` directory containing CSV files partitioned by date:
+  - Example files: `event_data/2018-11-08-events.csv`, `event_data/2018-11-09-events.csv`
 
-## Project Requirements
 
-### ETL Pipeline Processing
-- Complete the ETL pipeline
-- Create `event_datafile_new.csv`
-- Use correct datatypes in `CREATE` statements
+## Steps Taken
 
-### Data Modeling
-- Build accurate data models
-- Use appropriate table names and column order
-- Ensure queries return correct results without `ALLOW FILTERING`
 
-### PRIMARY KEYS
-- Use partition keys and clustering columns to uniquely identify rows
+### ETL Pipeline
+- Parsed and processed all CSV files into a single denormalized file: `event_datafile_new.csv`
+- Cleaned and transformed the data to prepare for Cassandra insertion
 
-### Presentation
-- Include explanations of queries
-- Clean and modular code
-- Remove in-line instructions meant only for you
 
-## Suggestions to Stand Out
-- Describe your PRIMARY KEY choices
-- Use pandas DataFrames for better output readability
+### Data Modeling in Cassandra
+- Designed three tables to support specific queries defined by the analytics team
+- Used meaningful table names based on the type of query each supports
+- Defined appropriate `PRIMARY KEY` columns using partition keys and clustering columns
+- Ensured correct datatypes for all fields
+
+
+### Data Loading
+- Inserted transformed data into Cassandra tables using `INSERT` statements
+- Verified data correctness by running the corresponding `SELECT` queries
+
+
+## Notes on Modeling
+- Chose primary keys based on the query requirements:
+  - Used single or composite keys to ensure uniqueness and query efficiency
+- Avoided using `ALLOW FILTERING` in queries
+
+
+## Final Touches
+- Structured the Jupyter Notebook cleanly with modular code
